@@ -1,0 +1,5 @@
+{
+  "headCode": "<!-- Google Analytics -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-MSVHND6RHQ\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n  gtag('config', 'G-MSVHND6RHQ');\n</script>",
+  "bodyStartCode": "",
+  "bodyEndCode": ""
+}

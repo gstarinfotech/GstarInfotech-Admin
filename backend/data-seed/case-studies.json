@@ -1,0 +1,613 @@
+[
+    {
+        "id": "kelly-jones-luxury-re",
+        "title": "Kelly Jones Luxury RE",
+        "type": "Luxury Real Estate Platform",
+        "industry": "Real Estate",
+        "accent": "#0bc6aa",
+        "accent2": "#0ea5e9",
+        "url": "https://kellyfjones.com",
+        "duration": "8 weeks",
+        "challenge": "Kelly needed a premium digital presence to showcase luxury listings and convert high-intent buyers and sellers in a saturated Arizona market.",
+        "solution": "Built a custom WordPress platform with MLS integration, dual lead capture flows, and neighborhood-specific landing pages.",
+        "outcome": "$100M+ in sales volume facilitated through the platform with 95% listing conversion and 100% client satisfaction.",
+        "metrics": [
+            {
+                "value": "$100M+",
+                "label": "Sales Volume"
+            },
+            {
+                "value": "100%",
+                "label": "Client Satisfaction"
+            },
+            {
+                "value": "95%",
+                "label": "Listing Conversion"
+            },
+            {
+                "value": "10+",
+                "label": "Media Features"
+            }
+        ],
+        "features": [
+            {
+                "icon": "🎯",
+                "title": "Dual Lead Capture",
+                "desc": "Separate buyer and seller intake flows with detailed qualification forms."
+            },
+            {
+                "icon": "🏠",
+                "title": "MLS Integration",
+                "desc": "Live listings across Scottsdale, Paradise Valley, Arcadia and Phoenix."
+            },
+            {
+                "icon": "⭐",
+                "title": "Social Proof Engine",
+                "desc": "Google Reviews + press logos from NYT, Yahoo, Business Insider."
+            },
+            {
+                "icon": "📍",
+                "title": "Neighbourhood Pages",
+                "desc": "Dedicated SEO-optimised landing pages per market area."
+            }
+        ],
+        "testimonial": {
+            "quote": "Kelly's expertise in the Scottsdale luxury market is truly exceptional — the platform made everything smooth and stress-free.",
+            "author": "Tanwi Mazumder",
+            "role": "Verified Client · Google Review"
+        },
+        "press": [
+            "The New York Times",
+            "Yahoo",
+            "Business Insider",
+            "Nasdaq"
+        ],
+        "deliverables": [
+            "Custom WordPress Theme",
+            "MLS Integration",
+            "Lead Capture Forms",
+            "SEO Setup",
+            "Google Reviews API",
+            "Neighbourhood Pages"
+        ],
+        "stack": [
+            "WordPress",
+            "Google Maps API",
+            "MLS Integration",
+            "Custom PHP",
+            "Google Reviews API"
+        ]
+    },
+    {
+        "id": "impowered",
+        "title": "I'M Powered",
+        "type": "Mental Health & Therapy Platform",
+        "industry": "Mental Health / Wellness",
+        "url": "https://impowered.in",
+        "duration": "12 weeks",
+        "challenge": "Damini Grover, an award-winning psychologist with 11+ years of experience, needed a digital platform that could convey clinical credibility while feeling warm, safe, and approachable — breaking the stigma around therapy in the Indian market.",
+        "solution": "Built a WordPress platform featuring therapist profiles with video introductions, service-specific landing pages, a structured onboarding flow, Google Reviews integration, press coverage showcasing, and a book-a-session funnel optimised for conversion.",
+        "outcome": "A trusted mental health brand with a multi-specialist team, media features across Hindustan Times, Zee News, The Statesman, and Dainik Bhaskar, and hundreds of 5-star client testimonials driving consistent organic growth.",
+        "metrics": [
+            {
+                "value": "11+",
+                "label": "Years of Practice"
+            },
+            {
+                "value": "5★",
+                "label": "Google Rating"
+            },
+            {
+                "value": "6+",
+                "label": "Media Features"
+            },
+            {
+                "value": "5",
+                "label": "Specialists Onboarded"
+            }
+        ],
+        "features": [
+            {
+                "icon": "🧠",
+                "title": "Therapist Profiles",
+                "desc": "Video-first team pages with personality tags and specialisations to help clients find the right fit."
+            },
+            {
+                "icon": "📋",
+                "title": "Structured Onboarding",
+                "desc": "A guided 'Get Started' flow that qualifies clients and matches them to the right therapist or psychiatrist."
+            },
+            {
+                "icon": "🌐",
+                "title": "Service Landing Pages",
+                "desc": "Dedicated pages for anxiety, depression, trauma, relationships, stress, and self-esteem counselling."
+            },
+            {
+                "icon": "⭐",
+                "title": "Social Proof Engine",
+                "desc": "Google Reviews + press logos from Hindustan Times, Zee News, The Statesman, Elephant Journal."
+            }
+        ],
+        "testimonial": {
+            "quote": "Working with I'M Powered has been a genuinely transformative experience — from the first session, I felt at ease.",
+            "author": "Nikhil Kapur",
+            "role": "Verified Client · Google Review"
+        },
+        "press": [
+            "Hindustan Times",
+            "Zee News",
+            "The Statesman",
+            "Dainik Bhaskar",
+            "Daily Guardian",
+            "Elephant Journal"
+        ],
+        "deliverables": [
+            "Custom WordPress Theme",
+            "Therapist Profile System",
+            "Onboarding Flow",
+            "Service Landing Pages",
+            "Google Reviews Integration",
+            "Video Testimonial Section",
+            "Books / Author Section"
+        ],
+        "stack": [
+            "WordPress",
+            "Custom PHP",
+            "Google Reviews API",
+            "Trustindex",
+            "Video Embeds",
+            "SEO Setup"
+        ]
+    },
+    {
+        "id": "amat-edu",
+        "title": "Austin Medical Assistant Training",
+        "type": "Accredited Healthcare Education Platform",
+        "industry": "Education / Healthcare",
+        "url": "https://amat.edu",
+        "duration": "10 weeks",
+        "challenge": "AMAT, an accredited allied healthcare school in Queens, NY, needed a modern web presence that could communicate program credibility, simplify enrollment, and attract working adults seeking career changes — all while keeping the cost of digital infrastructure low.",
+        "solution": "Built a WordPress platform with dedicated program pages for each certification track, a streamlined three-path enrollment system (online, phone, walk-in), a student portal, financial aid information hub, and an evening-class scheduling system to serve working students.",
+        "outcome": "A fully operational education platform serving multiple certification programs with highest job placement rates in NY, lifetime career services for graduates, and a frictionless enrollment process that removed the need for lengthy admissions paperwork.",
+        "metrics": [
+            {
+                "value": "7+",
+                "label": "Certification Programs"
+            },
+            {
+                "value": "#1",
+                "label": "Job Placement Rate in NY"
+            },
+            {
+                "value": "3",
+                "label": "Enrollment Pathways"
+            },
+            {
+                "value": "Lifetime",
+                "label": "Career Assistance"
+            }
+        ],
+        "features": [
+            {
+                "icon": "🎓",
+                "title": "Program Landing Pages",
+                "desc": "Dedicated pages for Medical Assistant, Phlebotomy, EKG, Sonography, CNA, and Medical Billing & Coding."
+            },
+            {
+                "icon": "📋",
+                "title": "Simplified Enrollment Flow",
+                "desc": "Three enrollment options — online form, phone, and walk-in — with no credit check payment plans."
+            },
+            {
+                "icon": "💼",
+                "title": "Career Services Hub",
+                "desc": "Integrated career assistance portal connecting graduates with employers seeking allied health professionals."
+            },
+            {
+                "icon": "🌙",
+                "title": "Evening Class Scheduling",
+                "desc": "Class schedule system designed for working adults to pursue certifications alongside full-time jobs."
+            }
+        ],
+        "testimonial": {
+            "quote": "AMAT's low student-to-teacher ratio and hands-on training gave me the skills and placement support I needed to start my healthcare career.",
+            "author": "AMAT Graduate",
+            "role": "Certified Medical Assistant · New York"
+        },
+        "press": [
+            "ABHES Accredited",
+            "NY State Education Dept. Approved",
+            "Title IV Financial Aid Eligible"
+        ],
+        "deliverables": [
+            "WordPress Platform",
+            "Program Landing Pages",
+            "Enrollment Flow",
+            "Student Portal Integration",
+            "Financial Aid Info Hub",
+            "Career Services Page",
+            "Class Schedule System"
+        ],
+        "stack": [
+            "WordPress",
+            "Custom PHP",
+            "Student Portal (Orbund SIS)",
+            "Payment Gateway",
+            "SEO Setup",
+            "Online Registration Forms"
+        ]
+    },
+    {
+        "id": "urbanista",
+        "title": "Urbanista",
+        "type": "Premium Consumer Audio E-Commerce",
+        "industry": "Consumer Electronics / Lifestyle",
+        "url": "https://urbanista.com",
+        "duration": "14 weeks",
+        "challenge": "Urbanista, a Stockholm-born audio brand founded in 2010, needed a global e-commerce presence that matched their premium lifestyle positioning — selling solar-powered, ANC-enabled audio products across 30+ countries while communicating a strong 'designed for life in motion' brand identity.",
+        "solution": "Built a Shopify-powered international storefront with multi-currency support across 30+ regions, a dedicated Solar technology landing page, product-specific collection pages, a companion mobile app ecosystem, and a conversion-optimised product discovery flow.",
+        "outcome": "A globally distributed premium audio brand selling across Europe, North America, and beyond — with world-first solar-charging audio products (Phoenix, Los Angeles, Malibu) becoming flagship hero products driving category-defining PR and media coverage.",
+        "metrics": [
+            {
+                "value": "30+",
+                "label": "Countries Served"
+            },
+            {
+                "value": "3",
+                "label": "Solar-Powered Products"
+            },
+            {
+                "value": "2010",
+                "label": "Founded in Stockholm"
+            },
+            {
+                "value": "World's First",
+                "label": "Solar Audio Products"
+            }
+        ],
+        "features": [
+            {
+                "icon": "☀️",
+                "title": "Solar Technology Hub",
+                "desc": "Dedicated landing page showcasing Powerfoyle™ solar cell integration — indoor & outdoor light charging with live app tracking."
+            },
+            {
+                "icon": "🌍",
+                "title": "Multi-Currency Storefront",
+                "desc": "Seamless currency switching across 30+ countries including USD, GBP, EUR, SEK, NOK, DKK and more."
+            },
+            {
+                "icon": "🎧",
+                "title": "Product Collection System",
+                "desc": "Segmented collections for Headphones, Earphones, Speakers, and Solar — each with colour variant browsing and ANC feature callouts."
+            },
+            {
+                "icon": "📱",
+                "title": "Companion App Integration",
+                "desc": "Urbanista app integration for solar charging live view, power history tracking, and ANC/Ambient Sound mode controls."
+            }
+        ],
+        "testimonial": {
+            "quote": "Urbanista was born out of love for cities and urban life — stylish, affordable audio that provides the soundtrack for life in motion.",
+            "author": "Urbanista",
+            "role": "Founded 2010 · Stockholm, Sweden"
+        },
+        "press": [
+            "Shopify",
+            "Exeger Powerfoyle™ Partnership",
+            "Global Distribution"
+        ],
+        "deliverables": [
+            "Shopify Storefront",
+            "Multi-Currency Setup",
+            "Solar Technology Landing Page",
+            "Product Collection Pages",
+            "Mobile App Integration",
+            "Newsletter Funnel",
+            "B2B Sales Page",
+            "Sustainability Page"
+        ],
+        "stack": [
+            "Shopify",
+            "Custom Liquid Theme",
+            "Multi-Currency / Multi-Region",
+            "Shopify App Ecosystem",
+            "Video Hero Sections",
+            "Instagram Integration"
+        ]
+    },
+    {
+        "id": "cox-and-cox",
+        "title": "Cox & Cox",
+        "type": "Luxury Homeware & Furniture E-Commerce",
+        "industry": "Retail / Interior Design",
+        "url": "https://www.coxandcox.co.uk",
+        "duration": "16 weeks",
+        "challenge": "Cox & Cox, a beloved British homeware brand founded in 2001 by BBC interior design personality Fiona Cox, needed to evolve from a mail-order catalogue business into a modern digital flagship — retaining its boutique, curated identity while scaling to serve a rapidly growing online audience across the UK.",
+        "solution": "Built a Magento 2 e-commerce platform with 3D product visualisation, a room-building tool, six curated trend collections, a seasonal lookbook system, a made-to-order sofa configurator, and ShipperHQ-powered flexible shipping — all wrapped in an editorial-quality design that mirrors the iconic print catalogue experience.",
+        "outcome": "64% year-over-year sales growth, with over 100% growth spike during peak demand periods. The platform reached a projected 3 million orders milestone, with 402k Instagram followers and features in GQ, Ideal Home, and major British shelter publications.",
+        "metrics": [
+            {
+                "value": "64%",
+                "label": "YoY Sales Growth"
+            },
+            {
+                "value": "100%+",
+                "label": "Peak Period Growth"
+            },
+            {
+                "value": "402K",
+                "label": "Instagram Followers"
+            },
+            {
+                "value": "20+",
+                "label": "Years of Trading"
+            }
+        ],
+        "features": [
+            {
+                "icon": "🛋️",
+                "title": "Made-to-Order Sofa Configurator",
+                "desc": "Exclusive upholstery collection with a bespoke configurator allowing customers to customise fabric, size and finish."
+            },
+            {
+                "icon": "🏡",
+                "title": "3D Room Builder",
+                "desc": "Interactive room-building tool letting shoppers visualise pieces in their own space before purchasing."
+            },
+            {
+                "icon": "📖",
+                "title": "Seasonal Lookbook System",
+                "desc": "Digital versions of the iconic print catalogue with Outdoor, Upholstery, and Christmas Lookbooks driving editorial-led discovery."
+            },
+            {
+                "icon": "🚚",
+                "title": "Advanced Shipping Engine",
+                "desc": "ShipperHQ integration replacing native Magento shipping — enabling flexible rate rules, 2-man delivery, and real-time checkout control."
+            }
+        ],
+        "testimonial": {
+            "quote": "Our customers know their style. They come to us for new ways to transform their space — homeware that is easy to live with and will be with them for years to come.",
+            "author": "Aynsley Peet",
+            "role": "E-Commerce Director · Cox & Cox"
+        },
+        "press": [
+            "GQ",
+            "Ideal Home",
+            "The Sunday Times",
+            "ShipperHQ Case Study",
+            "Akeneo Partnership"
+        ],
+        "deliverables": [
+            "Magento 2 Platform",
+            "3D Product Visualisation",
+            "Room Builder Tool",
+            "Seasonal Lookbook Pages",
+            "Sofa Configurator",
+            "ShipperHQ Integration",
+            "Akeneo PXM Integration",
+            "Trend Collection Pages",
+            "Catalogue PDF System"
+        ],
+        "stack": [
+            "Magento 2",
+            "React",
+            "ShipperHQ",
+            "Akeneo PXM",
+            "Nosto (Personalisation)",
+            "Royal Mail / DHL",
+            "PayPal",
+            "HSTS"
+        ]
+    },
+    {
+        "id": "oceanair-travels",
+        "title": "OceanAir Travels",
+        "type": "Luxury Travel & Desert Experience Platform",
+        "industry": "Travel & Tourism / Hospitality",
+        "url": "https://oceanairtravels.com",
+        "duration": "12 weeks",
+        "challenge": "OceanAir, a Dubai-based travel curator founded in 2010 with offices across UAE, Egypt, and India, needed a digital platform that could showcase their premium desert properties, multi-country experiences, and Michelin-awarded dining — while converting high-intent global travellers across multiple booking channels.",
+        "solution": "Built a conversion-focused travel platform with experience-specific landing pages, online booking integration, multi-language support, GetYourGuide and Viator channel connectivity, and editorial destination storytelling — positioning OceanAir as the Middle East's premier cross-cultural travel curator.",
+        "outcome": "A $17.6M revenue travel operation with 223 staff, top-ranked TripAdvisor listings for Dubai desert safari experiences, distribution across GetYourGuide and Viator, and recognition as the Middle East's leading cross-cultural travel curator with Michelin-awarded dining properties.",
+        "metrics": [
+            {
+                "value": "$17.6M",
+                "label": "Annual Revenue"
+            },
+            {
+                "value": "223",
+                "label": "Team Members"
+            },
+            {
+                "value": "#1",
+                "label": "Ranked Desert Safari Dubai"
+            },
+            {
+                "value": "6",
+                "label": "Countries Served"
+            }
+        ],
+        "features": [
+            {
+                "icon": "🏜️",
+                "title": "Desert Experience Hub",
+                "desc": "Dedicated pages for Al Marmoom Oasis, Al Marmoom Domes, Al Badya Village, and Al Khayma Camps — each with booking flows and experience details."
+            },
+            {
+                "icon": "🌍",
+                "title": "Multi-Country Journey Pages",
+                "desc": "Itinerary-led landing pages covering UAE, Qatar, Oman, Egypt, Bosnia and Croatia with cultural storytelling and package pricing."
+            },
+            {
+                "icon": "📲",
+                "title": "OTA Channel Integration",
+                "desc": "Seamless connectivity with GetYourGuide, Viator, and Visit Dubai listing portals for global distribution and real-time availability."
+            },
+            {
+                "icon": "🍽️",
+                "title": "Michelin Restaurant Showcase",
+                "desc": "Dedicated sections for Al Khayma Heritage Restaurants in Dubai and Abu Dhabi, featuring Emirati cuisine, falconry and live entertainment."
+            }
+        ],
+        "testimonial": {
+            "quote": "This experience was nothing short of spectacular — thrill, culture, beauty, and luxury all wrapped into one unforgettable day.",
+            "author": "Verified Guest",
+            "role": "Premium Red Dunes Safari · TripAdvisor Review"
+        },
+        "press": [
+            "Visit Dubai",
+            "GetYourGuide",
+            "Viator",
+            "TripAdvisor Top Rated",
+            "Michelin Recognition"
+        ],
+        "deliverables": [
+            "Travel Platform Website",
+            "Experience Landing Pages",
+            "Online Booking Integration",
+            "OTA Channel Connectivity",
+            "Desert Property Pages",
+            "Multi-Country Journey Pages",
+            "Restaurant & Dining Section",
+            "LinkedIn & Facebook Integration"
+        ],
+        "stack": [
+            "Cloudflare",
+            "Google Analytics",
+            "DoubleClick",
+            "Highcharts",
+            "Facebook Pixel",
+            "LinkedIn Insight Tag",
+            "Online Booking Engine"
+        ]
+    },
+    {
+        "id": "gardening-services-london",
+        "title": "Gardening Services London",
+        "type": "Local Trades & Home Services Platform",
+        "industry": "Home & Garden Services",
+        "url": "https://www.gardeningserviceslondon.co.uk",
+        "duration": "6 weeks",
+        "challenge": "Gardening Services London, a professional gardening company covering all of London and the M25, needed a lead-generating website that could convert local search traffic into bookings — competing in one of the most saturated local services markets in the UK.",
+        "solution": "Built a service-area-focused WordPress site with dedicated landing pages for every London borough, service-specific pages for maintenance, landscaping, lawn care, jet washing, and gutter cleaning, a photo-based quote request flow, and 24/7 customer support integration.",
+        "outcome": "A high-ranking local services platform serving thousands of residential and commercial gardens across London, with same-day booking capability, strong Google presence across borough-level search terms, and a steady stream of repeat clients from homeowners, tenants, and landlords.",
+        "metrics": [
+            {
+                "value": "7+",
+                "label": "Years in Operation"
+            },
+            {
+                "value": "24/7",
+                "label": "Customer Support"
+            },
+            {
+                "value": "M25",
+                "label": "Coverage Area"
+            },
+            {
+                "value": "2-Man",
+                "label": "Teams on Every Job"
+            }
+        ],
+        "features": [
+            {
+                "icon": "📍",
+                "title": "Borough Landing Pages",
+                "desc": "Dedicated SEO-optimised pages for every London area — Richmond, Ealing, Hackney, Clapham, Croydon and beyond."
+            },
+            {
+                "icon": "📸",
+                "title": "Photo Quote Flow",
+                "desc": "Customers send photos of their garden via phone or email to receive an accurate quote instantly — no site visit needed."
+            },
+            {
+                "icon": "🗓️",
+                "title": "Flexible Booking System",
+                "desc": "Same-day, weekly, fortnightly, and monthly scheduling — available 7 days a week including bank holidays."
+            },
+            {
+                "icon": "🌿",
+                "title": "Service Combo Discounts",
+                "desc": "Smart upsell system offering discounted bundles when combining services like lawn care, jet washing, and gutter cleaning."
+            }
+        ],
+        "testimonial": {
+            "quote": "It is so easy to work with your customer centre. I just sent some photos of my overgrown garden and they gave me a price right away. Will book with you again.",
+            "author": "Verified Customer",
+            "role": "London Homeowner · Google Review"
+        },
+        "press": [
+            "Companies House Registered",
+            "Fully Insured",
+            "Eco-Friendly Certified Practices"
+        ],
+        "deliverables": [
+            "WordPress Website",
+            "Borough Landing Pages",
+            "Service Pages",
+            "Photo Quote Request Flow",
+            "Online Booking Integration",
+            "24/7 Support Setup",
+            "SEO Structure",
+            "Google Reviews Integration"
+        ],
+        "stack": [
+            "WordPress",
+            "Custom PHP",
+            "Google Analytics",
+            "Google My Business",
+            "Click-to-Call",
+            "Quote Request Forms",
+            "Local SEO"
+        ]
+    },
+    {
+  "id": "the-modern-shop",
+  "title": "The Modern Shop",
+  "type": "Premium Design & Furniture E-Commerce",
+  "industry": "Retail / Interior Design",
+  "url": "https://themodernshop.com",
+  "duration": "10 weeks",
+  "challenge": "Founded in Ottawa in 2010, The Modern Shop identified a clear gap in the Canadian market — design-conscious shoppers had no reliable local destination for authentic Scandinavian and mid-century modern pieces from the world's top brands. They needed a premium e-commerce platform to serve both their Ottawa showroom and a national online audience.",
+  "solution": "Built a Shopify-powered design store with brand-led collection pages, a trade programme portal, clearance and promotion sections, and a curated multi-brand catalogue spanning furniture, lighting, accessories, and kids' design — with transparent Canadian pricing and no hidden tariffs.",
+  "outcome": "A nationally recognised Canadian design destination carrying 100+ premium brands including Tom Dixon, Muuto, Flos, Moooi, HAY, Vitra, and Jonathan Adler — with 20K+ Instagram followers, a loyal trade client base, and over a decade of sustained growth as Canada's go-to modern design retailer.",
+  "metrics": [
+    { "value": "100+", "label": "Premium Brands" },
+    { "value": "20K+", "label": "Instagram Followers" },
+    { "value": "2010", "label": "Founded in Ottawa" },
+    { "value": "Canada-Wide", "label": "Shipping Coverage" }
+  ],
+  "features": [
+    { "icon": "🏷️", "title": "Brand-Led Collections", "desc": "Dedicated storefronts for 100+ design brands including Tom Dixon, Muuto, Flos, Moooi, Normann Copenhagen, Vitra, and HAY." },
+    { "icon": "🛠️", "title": "Trade Programme Portal", "desc": "Dedicated trade access programme for interior designers and architects — with exclusive pricing and account management." },
+    { "icon": "💰", "title": "Promotions & Clearance Engine", "desc": "Structured discount tiers (20% off brand campaigns, 40% and 70% clearance sections) driving conversion and stock rotation." },
+    { "icon": "🇨🇦", "title": "Canadian-First Pricing", "desc": "Transparent CAD pricing with no hidden tariffs or cross-border fees — solving the core pain point for Canadian design shoppers." }
+  ],
+  "testimonial": {
+    "quote": "For over a decade I have travelled the globe to bring the timeless, the cutting edge, and the unexpected to our customers worldwide.",
+    "author": "Founder",
+    "role": "The Modern Shop · Ottawa, Ontario"
+  },
+  "press": ["Shopify Store Examples", "Canadian Design Press", "Trade Programme Featured"],
+  "deliverables": [
+    "Shopify Storefront",
+    "Brand Collection Pages",
+    "Trade Programme Portal",
+    "Promotions System",
+    "Clearance Sections",
+    "Kids Design Category",
+    "Floor Models Section",
+    "Instagram Integration"
+  ],
+  "stack": [
+    "Shopify",
+    "Custom Liquid Theme",
+    "Shopify Collections",
+    "Trade Account System",
+    "Canadian Payment Gateway",
+    "Instagram Feed",
+    "Email Marketing"
+  ]
+}
+]

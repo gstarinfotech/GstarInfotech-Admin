@@ -1,0 +1,572 @@
+[
+  {
+    "path": "/",
+    "label": "Home",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/about",
+    "label": "About",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/services",
+    "label": "Services Listing",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/our-work",
+    "label": "Our Work",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/testimonials",
+    "label": "Testimonials",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/contact",
+    "label": "Contact",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/privacy-policy",
+    "label": "Privacy Policy",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/services/web-design",
+    "label": "Web Design",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/ux-ui-design",
+    "label": "Ux Ui Design",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/brand-design-strategy",
+    "label": "Brand Design Strategy",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/logo-design",
+    "label": "Logo Design",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/figma-design",
+    "label": "Figma Design",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cx-design",
+    "label": "Cx Design",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/reactjs",
+    "label": "Reactjs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/nextjs",
+    "label": "Nextjs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/vuejs",
+    "label": "Vuejs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/nuxtjs",
+    "label": "Nuxtjs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/angular",
+    "label": "Angular",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/svelte",
+    "label": "Svelte",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/astro",
+    "label": "Astro",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/nodejs",
+    "label": "Nodejs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/nestjs",
+    "label": "Nestjs",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/laravel",
+    "label": "Laravel",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/django",
+    "label": "Django",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/fastapi",
+    "label": "Fastapi",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/aspnet",
+    "label": "Aspnet",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/rails",
+    "label": "Rails",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/spring-boot",
+    "label": "Spring Boot",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/dotnet",
+    "label": "Dotnet",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/shopify",
+    "label": "Shopify",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/woocommerce",
+    "label": "Woocommerce",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/magento",
+    "label": "Magento",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/bigcommerce",
+    "label": "Bigcommerce",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/wordpress",
+    "label": "Wordpress",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/drupal",
+    "label": "Drupal",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/joomla",
+    "label": "Joomla",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/webflow",
+    "label": "Webflow",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/wix-studio",
+    "label": "Wix Studio",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/squarespace",
+    "label": "Squarespace",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/website-maintenance",
+    "label": "Website Maintenance",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/dxp",
+    "label": "Dxp",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/product-discovery",
+    "label": "Product Discovery",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/poc-development",
+    "label": "Poc Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/mvp-development",
+    "label": "Mvp Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/software-product-engineering",
+    "label": "Software Product Engineering",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/plm",
+    "label": "Plm",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/custom-application",
+    "label": "Custom Application",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/saas-development",
+    "label": "Saas Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/ios-development",
+    "label": "Ios Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/android-development",
+    "label": "Android Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/mobile-development",
+    "label": "Mobile Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/hybrid-development",
+    "label": "Hybrid Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/aso",
+    "label": "Aso",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/mobile-app-testing",
+    "label": "Mobile App Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/legacy-modernization",
+    "label": "Legacy Modernization",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/enterprise-integration",
+    "label": "Enterprise Integration",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/enterprise-magento",
+    "label": "Enterprise Magento",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/crm",
+    "label": "Crm",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/digital-workplace",
+    "label": "Digital Workplace",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/blockchain",
+    "label": "Blockchain",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/gcc",
+    "label": "Gcc",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/digital-consulting",
+    "label": "Digital Consulting",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/metaverse",
+    "label": "Metaverse",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/data-advisory",
+    "label": "Data Advisory",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/data-science",
+    "label": "Data Science",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/data-modernization",
+    "label": "Data Modernization",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/ai-transformation",
+    "label": "Ai Transformation",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/generative-ai",
+    "label": "Generative Ai",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/aiml-development",
+    "label": "Aiml Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/intelligent-automation",
+    "label": "Intelligent Automation",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cloud-strategy",
+    "label": "Cloud Strategy",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cloud-migration",
+    "label": "Cloud Migration",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cloud-optimization",
+    "label": "Cloud Optimization",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cloud-managed",
+    "label": "Cloud Managed",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/devops",
+    "label": "Devops",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cloud-security",
+    "label": "Cloud Security",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/cybersecurity",
+    "label": "Cybersecurity",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/software-testing",
+    "label": "Software Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/functional-testing",
+    "label": "Functional Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/performance-testing",
+    "label": "Performance Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/automation-testing",
+    "label": "Automation Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/usability-testing",
+    "label": "Usability Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/security-testing",
+    "label": "Security Testing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/ppc",
+    "label": "Ppc",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/content-marketing",
+    "label": "Content Marketing",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/social-media",
+    "label": "Social Media",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/lead-generation",
+    "label": "Lead Generation",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/pr",
+    "label": "Pr",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/orm",
+    "label": "Orm",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/dedicated-teams",
+    "label": "Dedicated Teams",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/staff-augmentation",
+    "label": "Staff Augmentation",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/services/web-development",
+    "label": "Web Development",
+    "group": "Service Pages"
+  },
+  {
+    "path": "/blogs/5-signs-your-brand-identity-is-outdated",
+    "label": "5 Signs Your Logo and Brand Identity Look Outdated (And How to Fix Them)",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/why-your-paid-ad-campaigns-arent-converting",
+    "label": "Why Your Paid Ad Campaigns Aren't Converting (And How to Fix Them)",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/seo-vs-aeo-vs-geo-2026-search-strategy",
+    "label": "SEO vs. AEO vs. GEO: How Modern Brands Must Adapt Their Search Strategy in 2026",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/enterprise-web-design-checklist-aesthetics-speed",
+    "label": "The Enterprise Web Design Checklist: Balancing Brand Aesthetics with Ultra-Fast Page Speeds",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/how-to-optimize-google-business-profile-multi-location-enterprise-brands",
+    "label": "How to Optimize Your Google Business Profile for Multi-Location Enterprise Brands",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/prototype-vs-poc-vs-mvp-what-should-you-build-first",
+    "label": "Prototype vs PoC vs MVP: What Should You Build First?",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/technical-seo-audit-guide-for-legacy-websites",
+    "label": "A Technical SEO Audit Guide for Legacy Websites",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/wordpress-vs-webflow-vs-wix-studio-which-platform-is-right-for-your-brand",
+    "label": "WordPress vs Webflow vs Wix Studio: Which Platform Is Right for Your Brand?",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/ai-web-development-vs-custom-website-development-2027-founders-dilemma",
+    "label": "AI Web Development Tools vs. Custom Website Development: The 2027 Founder's Dilemma",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/why-b2b-paid-ads-fail-fixing-the-post-click-conversion-gap",
+    "label": "Why B2B Paid Ads Fail: Fixing the Post-Click Conversion Gap",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/native-vs-cross-platform-app-development-cost-performance-scalability",
+    "label": "Native vs Cross-Platform App Development: Cost, Performance & Scalability",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/why-slow-websites-lose-revenue-business-impact-of-web-performance",
+    "label": "Why Slow Websites Lose Revenue: The Business Impact of Web Performance",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs/generative-engine-optimization-geo-guide-for-b2b-saas",
+    "label": "Generative Engine Optimization (GEO) for B2B SaaS: Complete Guide",
+    "group": "Blog Pages"
+  },
+  {
+    "path": "/blogs",
+    "label": "Blogs Listing",
+    "group": "Static Pages"
+  },
+  {
+    "path": "/our-work/kelly-jones-luxury-re",
+    "label": "Kelly Jones Luxury RE",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/impowered",
+    "label": "I'M Powered",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/amat-edu",
+    "label": "AMAT Portal",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/urbanista",
+    "label": "Urbanista Store",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/cox-and-cox",
+    "label": "Cox & Cox",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/oceanair-travels",
+    "label": "OceanAir Travels",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/gardening-services-london",
+    "label": "Gardening Services London",
+    "group": "Project Pages"
+  },
+  {
+    "path": "/our-work/the-modern-shop",
+    "label": "The Modern Shop",
+    "group": "Project Pages"
+  }
+]

@@ -1,0 +1,309 @@
+[
+    {
+        "id": "real-estate",
+        "projects": [
+            {
+                "id": "kelly-jones-luxury-re",
+                "title": "Kelly Jones Luxury RE",
+                "type": "Luxury Real Estate Platform",
+                "desc": "A luxury real estate portal for top Scottsdale agent Kelly Jones — featuring curated listings across Paradise Valley, Arcadia, and Phoenix, with buyer/seller intake flows and instant listing alerts.",
+                "services": [
+                    "web-development",
+                    "wordpress",
+                    "custom-software"
+                ],
+                "tags": [
+                    "Next.js",
+                    "WordPress",
+                    "Google Maps API",
+                    "MLS Integration"
+                ],
+                "metrics": [
+                    {
+                        "label": "Sales volume",
+                        "val": "$100M+"
+                    },
+                    {
+                        "label": "Client satisfaction",
+                        "val": "100%"
+                    },
+                    {
+                        "label": "Listing conversion",
+                        "val": "95%"
+                    }
+                ],
+                "video": "/media/real-estate.mp4",
+                "videoMobile": "/media/real-estate-mobile.mp4",
+                "url": "kellyfjones.com"
+            }
+        ]
+    },
+    {
+        "id": "healthcare",
+        "projects": [
+            {
+                "id": "impowered",
+                "title": "I'M Powered",
+                "type": "Mental Wellness Platform",
+                "desc": "A trauma-informed therapy platform connecting clients with psychologists, psychiatrists, and life coaches. Features session booking, therapist profiles, and structured support for anxiety, depression, trauma, and relationship issues.",
+                "services": [
+                    "web-development",
+                    "wordpress",
+                    "custom-software"
+                ],
+                "tags": [
+                    "React",
+                    "Node.js",
+                    "Calendly API",
+                    "Stripe",
+                    "WordPress"
+                ],
+                "metrics": [
+                    {
+                        "label": "Satisfaction rate",
+                        "val": "100%"
+                    },
+                    {
+                        "label": "Therapists",
+                        "val": "6+"
+                    },
+                    {
+                        "label": "Media features",
+                        "val": "10+"
+                    }
+                ],
+                "video": "/media/healthcare.mp4",
+                "videoMobile": "/media/healthcare-mobile.mp4",
+                "url": "impowered.in"
+            }
+        ]
+    },
+    {
+        "id": "education",
+        "projects": [
+            {
+                "id": "amat-edu",
+                "title": "AMAT Portal",
+                "type": "Medical Training Platform",
+                "desc": "A student portal for Austin Medical Assistant Training — a NYC-based allied health school offering programs in medical assisting, phlebotomy, EKG, billing & coding. Features class scheduling, student registration, and career placement tools.",
+                "services": [
+                    "web-development",
+                    "custom-software"
+                ],
+                "tags": [
+                    "Next.js",
+                    "Node.js",
+                    "MySQL",
+                    "Stripe"
+                ],
+                "metrics": [
+                    {
+                        "label": "Job placement",
+                        "val": "High"
+                    },
+                    {
+                        "label": "Programs",
+                        "val": "7+"
+                    },
+                    {
+                        "label": "Grad satisfaction",
+                        "val": "100%"
+                    }
+                ],
+                "video": "/media/education.mp4",
+                "videoMobile": "/media/education-mobile.mp4",
+                "url": "amat.edu"
+            }
+        ]
+    },
+    {
+        "id": "ecommerce",
+        "projects": [
+            {
+                "id": "urbanista",
+                "title": "Urbanista Store",
+                "type": "Lifestyle Audio E-Commerce",
+                "desc": "A global Shopify storefront for Urbanista, a Stockholm-born audio brand selling headphones, earphones, and speakers in 20+ countries. Features multi-currency checkout, product collections, solar charging showcase, and a newsletter funnel.",
+                "services": [
+                    "web-development",
+                    "ecommerce-shopify"
+                ],
+                "tags": [
+                    "Shopify",
+                    "Liquid",
+                    "JavaScript",
+                    "Multi-currency"
+                ],
+                "metrics": [
+                    {
+                        "label": "Markets",
+                        "val": "20+"
+                    },
+                    {
+                        "label": "Product lines",
+                        "val": "4"
+                    },
+                    {
+                        "label": "Founded",
+                        "val": "2010"
+                    }
+                ],
+                "video": "/media/ecommerce.mp4",
+                "videoMobile": "/media/ecommerce-mobile.mp4",
+                "url": "urbanista.com"
+            }
+        ]
+    },
+    {
+        "id": "corporate",
+        "projects": [
+            {
+                "id": "cox-and-cox",
+                "title": "Cox & Cox",
+                "type": "Home Furnishings E-Commerce Platform",
+                "desc": "A premium UK home furnishings retailer platform covering furniture, lighting, soft furnishings, mirrors and outdoor living — featuring made-to-order sofas, a style lookbook, catalogue system, finance options and a 10-year guarantee portal.",
+                "services": [
+                    "web-development",
+                    "custom-software"
+                ],
+                "tags": [
+                    "React",
+                    "Magento",
+                    "Node.js",
+                    "LiveChat"
+                ],
+                "metrics": [
+                    {
+                        "label": "Product categories",
+                        "val": "10+"
+                    },
+                    {
+                        "label": "Guarantee",
+                        "val": "10 Years"
+                    },
+                    {
+                        "label": "Delivery",
+                        "val": "Next Day"
+                    }
+                ],
+                "video": "/media/corporate.mp4",
+                "videoMobile": "/media/corporate-mobile.mp4",
+                "url": "coxandcox.co.uk"
+            }
+        ]
+    },
+    {
+        "id": "travel",
+        "projects": [
+            {
+                "id": "oceanair-travels",
+                "title": "OceanAir Travels",
+                "type": "Travel & Aviation Platform",
+                "desc": "A corporate travel and aviation services platform for OceanAir — handling flight bookings, itinerary management and business travel solutions with a streamlined, conversion-focused web presence.",
+                "services": [
+                    "web-development",
+                    "custom-software"
+                ],
+                "tags": [
+                    "React",
+                    "Node.js",
+                    "MongoDB",
+                    "Payment Gateway"
+                ],
+                "metrics": [
+                    {
+                        "label": "Booking flow",
+                        "val": "Optimised"
+                    },
+                    {
+                        "label": "Platform",
+                        "val": "Web"
+                    },
+                    {
+                        "label": "Focus",
+                        "val": "Corporate"
+                    }
+                ],
+                "video": "/media/travel.mp4",
+                "videoMobile": "/media/travel-mobile.mp4",
+                "url": "oceanairtravels.com"
+            }
+        ]
+    },
+    {
+        "id": "finance",
+        "projects": [
+            {
+                "id": "gardening-services-london",
+                "title": "Gardening Services London",
+                "type": "Local Services Booking Platform",
+                "desc": "A lead generation and booking platform for a professional London gardening company — covering garden maintenance, lawn care, landscaping and tree surgery, with same-day availability, quote requests and coverage across the entire M25.",
+                "services": [
+                    "web-development",
+                    "wordpress"
+                ],
+                "tags": [
+                    "WordPress",
+                    "PHP",
+                    "MySQL",
+                    "Google Maps API"
+                ],
+                "metrics": [
+                    {
+                        "label": "Services",
+                        "val": "8+"
+                    },
+                    {
+                        "label": "Areas covered",
+                        "val": "M25+"
+                    },
+                    {
+                        "label": "Rating",
+                        "val": "4.9★"
+                    }
+                ],
+                "video": "/media/finance.mp4",
+                "videoMobile": "/media/finance-mobile.mp4",
+                "url": "gardeningserviceslondon.co.uk"
+            }
+        ]
+    },
+    {
+        "id": "startup",
+        "projects": [
+            {
+                "id": "the-modern-shop",
+                "title": "The Modern Shop",
+                "type": "Modern Design E-Commerce Store",
+                "desc": "A curated Canadian e-commerce platform for modern lighting, furniture and accessories — featuring 100+ global design brands, a trade programme, multilingual/multi-currency support, seasonal sales, and a Spring Sale up to 25% off across all collections.",
+                "services": [
+                    "web-development",
+                    "ecommerce-shopify"
+                ],
+                "tags": [
+                    "Shopify",
+                    "React",
+                    "Multi-currency",
+                    "Klaviyo"
+                ],
+                "metrics": [
+                    {
+                        "label": "Brands",
+                        "val": "100+"
+                    },
+                    {
+                        "label": "Countries",
+                        "val": "150+"
+                    },
+                    {
+                        "label": "Founded",
+                        "val": "2010"
+                    }
+                ],
+                "video": "/media/startup.mp4",
+                "videoMobile": "/media/startup-mobile.mp4",
+                "url": "themodernshop.com"
+            }
+        ]
+    }
+]
