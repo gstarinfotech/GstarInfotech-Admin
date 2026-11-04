@@ -115,7 +115,6 @@ app.get("/api/overview", auth, asyncRoute(async (_req, res) => {
   res.json(r.rows[0]);
 }));
 
-// Page inventory and SEO
 app.get("/api/pages", auth, asyncRoute(async (_req, res) => {
   const r = await q("SELECT data FROM page_inventory ORDER BY path");
   res.json(r.rows.map(x => x.data));
@@ -136,7 +135,6 @@ app.put("/api/seo/:path(*)", auth, asyncRoute(async (req, res) => {
   res.json({ success: true, item: current });
 }));
 
-// Blogs
 app.get("/api/blogs", auth, asyncRoute(async (_req, res) => {
   const r = await q("SELECT data FROM blogs ORDER BY (data->>'date') DESC NULLS LAST, created_at DESC");
   res.json(r.rows.map(x => x.data));
@@ -194,15 +192,26 @@ app.delete("/api/blogs/:slug", auth, asyncRoute(async (req, res) => {
   res.json({ success: true });
 }));
 
-// Public, read-only website APIs. Writes always require admin authentication.
 app.get("/public/blogs", asyncRoute(async (_req, res) => {
-  const r = await q("SELECT data FROM blogs ORDER BY (data->>'date') DESC NULLS LAST,created_at DESC");
-  res.set("Cache-Control", "no-store"); res.json(r.rows.map(x => x.data));
+  const r = await q(`
+    SELECT data
+    FROM blogs
+    WHERE UPPER(COALESCE(data->>'status', 'PUBLISHED')) = 'PUBLISHED'
+    ORDER BY (data->>'date') DESC NULLS LAST, created_at DESC
+  `);
+  res.set("Cache-Control", "no-store");
+  res.json(r.rows.map((x) => x.data));
 }));
 app.get("/public/blogs/:slug", asyncRoute(async (req, res) => {
-  const r = await q("SELECT data FROM blogs WHERE slug=$1", [req.params.slug]);
+  const r = await q(`
+    SELECT data
+    FROM blogs
+    WHERE slug = $1
+      AND UPPER(COALESCE(data->>'status', 'PUBLISHED')) = 'PUBLISHED'
+  `, [req.params.slug]);
   if (!r.rowCount) return res.status(404).json({ error: "Blog not found" });
-  res.set("Cache-Control", "no-store"); res.json(r.rows[0].data);
+  res.set("Cache-Control", "no-store");
+  res.json(r.rows[0].data);
 }));
 app.get("/public/projects", asyncRoute(async (_req, res) => {
   const r = await q("SELECT id,category_id,data,case_study FROM projects ORDER BY category_id,id");
