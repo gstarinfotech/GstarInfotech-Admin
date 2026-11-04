@@ -253,6 +253,15 @@ export default function Projects() {
           scrollbar-width: none;
           -ms-overflow-style: none;
         }
+        .hide-scrollbar {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+          width: 0;
+          height: 0;
+        }
       `}</style>
       <div className="project-management-page min-w-0">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
@@ -269,15 +278,16 @@ export default function Projects() {
           </button>
         </div>
 
-        <div className="grid min-w-0 gap-5 lg:grid-cols-[290px_minmax(0,1fr)]">
-          <section className="panel h-fit min-w-0 p-4">
+        <div className="grid min-w-0 items-start gap-5 lg:grid-cols-[290px_minmax(0,1fr)]">
+          {/* Projects list: stays fixed in its own panel and scrolls inside it */}
+          <section className="panel flex min-w-0 flex-col overflow-hidden p-4 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)]">
             <input
-              className="mb-3"
+              className="mb-3 shrink-0"
               placeholder="Search projects..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="space-y-2">
+            <div className="hide-scrollbar max-h-[60vh] min-h-0 flex-1 space-y-2 overflow-y-auto lg:max-h-none">
               {filtered.map((p) => (
                 <button
                   key={p.id}

@@ -18,8 +18,105 @@ const createBlankBlog = () => ({
     ogImage: "",
     robotsIndex: true,
     robotsFollow: true,
+    category: "",
+    readTime: "",
+    metaDate: "",
     contentBlocks: [],
 });
+
+// category / readTime / date website par hero badges mein dikhte hain.
+// Backend ko change na karna pade isliye ye contentBlocks ke pehle "meta" block mein save hote hain.
+function splitMeta(blocks) {
+    const list = Array.isArray(blocks) ? blocks : [];
+    const meta = list.find((block) => block?.type === "meta") || {};
+    return {
+        meta,
+        blocks: list.filter((block) => block?.type !== "meta"),
+    };
+}
+
+const getId = (b) => b?.id ?? b?._id ?? b?.slug ?? "";
+
+const slugify = (value) =>
+    String(value || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+const IMPORT_FIELDS = [
+    "title",
+    "slug",
+    "status",
+    "metaTitle",
+    "metaDescription",
+    "excerpt",
+    "featuredImage",
+    "focusKeyword",
+    "canonicalUrl",
+    "ogTitle",
+    "ogDescription",
+    "ogImage",
+    "robotsIndex",
+    "robotsFollow",
+    "category",
+    "readTime",
+];
+
+const str = (v) => (typeof v === "string" ? v : v == null ? "" : String(v));
+
+function normalizeBlock(block) {
+    if (!block || typeof block !== "object") return null;
+    switch (block.type) {
+        case "heading":
+            return {
+                type: "heading",
+                text: str(block.text),
+                level: Number(block.level) === 3 ? 3 : 2,
+            };
+        case "paragraph":
+            return { type: "paragraph", text: str(block.text) };
+        case "image":
+            return {
+                type: "image",
+                src: str(block.src),
+                alt: str(block.alt),
+                caption: str(block.caption),
+            };
+        case "list":
+            return {
+                type: "list",
+                items: (Array.isArray(block.items) ? block.items : []).map(str),
+            };
+        case "table": {
+            const headers = (Array.isArray(block.headers) ? block.headers : []).map(str);
+            const rows = (Array.isArray(block.rows) ? block.rows : []).map((row) =>
+                headers.map((_, i) => str(Array.isArray(row) ? row[i] : ""))
+            );
+            return { type: "table", title: str(block.title), headers, rows };
+        }
+        case "tldr":
+            return { type: "tldr", text: str(block.text) };
+        case "faq":
+            return {
+                type: "faq",
+                title: str(block.title),
+                items: (Array.isArray(block.items) ? block.items : []).map((item) => ({
+                    question: str(item?.question),
+                    answer: str(item?.answer),
+                })),
+            };
+        case "cta":
+            return {
+                type: "cta",
+                text: str(block.text),
+                buttonLabel: str(block.buttonLabel),
+                buttonUrl: str(block.buttonUrl),
+            };
+        default:
+            return null;
+    }
+}
 
 export default function BlogsPage() {
     const [rows, setRows] = useState([]);
@@ -29,6 +126,9 @@ export default function BlogsPage() {
     const [err, setErr] = useState("");
     const [busy, setBusy] = useState(false);
     const [saving, setSaving] = useState(false);
+    const [importOpen, setImportOpen] = useState(false);
+    const [importText, setImportText] = useState("");
+    const [importErr, setImportErr] = useState("");
 
     async function load() {
         try {
@@ -44,15 +144,22 @@ export default function BlogsPage() {
     }, []);
 
     function edit(blog) {
-        setId(blog.id);
+        setId(getId(blog));
+
+        const rawBlocks = Array.isArray(blog.contentBlocks)
+            ? blog.contentBlocks
+            : Array.isArray(blog.content)
+                ? blog.content
+                : [];
+        const { meta, blocks } = splitMeta(rawBlocks);
+
         setForm({
             ...createBlankBlog(),
             ...blog,
-            contentBlocks: Array.isArray(blog.contentBlocks)
-                ? blog.contentBlocks
-                : Array.isArray(blog.content)
-                    ? blog.content
-                    : [],
+            category: blog.category || meta.category || "",
+            readTime: blog.readTime || meta.readTime || "",
+            metaDate: meta.date || "",
+            contentBlocks: blocks,
         });
         setMsg("");
         setErr("");
@@ -85,6 +192,16 @@ export default function BlogsPage() {
                 headers: ["Column 1", "Column 2"],
                 rows: [["", ""]],
             };
+        } else if (type === "tldr") {
+            block = { type: "tldr", text: "" };
+        } else if (type === "faq") {
+            block = {
+                type: "faq",
+                title: "FAQs",
+                items: [{ question: "", answer: "" }],
+            };
+        } else if (type === "cta") {
+            block = { type: "cta", text: "", buttonLabel: "", buttonUrl: "" };
         } else {
             block = { type: "list", items: [""] };
         }
@@ -173,6 +290,84 @@ export default function BlogsPage() {
         update("contentBlocks", blocks);
     }
 
+    function applyImport(raw) {
+        setImportErr("");
+        let data;
+
+        try {
+            data = JSON.parse(raw);
+        } catch {
+            setImportErr("Invalid JSON. Please paste a valid JSON object.");
+            return;
+        }
+
+        if (Array.isArray(data)) data = { contentBlocks: data };
+        if (data && typeof data.blog === "object" && data.blog) data = data.blog;
+
+        if (!data || typeof data !== "object") {
+            setImportErr("JSON must be an object.");
+            return;
+        }
+
+        const next = createBlankBlog();
+
+        IMPORT_FIELDS.forEach((key) => {
+            if (data[key] !== undefined && data[key] !== null) {
+                next[key] = data[key];
+            }
+        });
+
+        next.title = str(next.title);
+        next.slug = slugify(next.slug || next.title);
+        next.status = ["DRAFT", "PUBLISHED"].includes(next.status)
+            ? next.status
+            : "DRAFT";
+        next.robotsIndex = next.robotsIndex !== false;
+        next.robotsFollow = next.robotsFollow !== false;
+
+        let blocks = data.contentBlocks ?? data.content ?? [];
+        if (typeof blocks === "string") {
+            try {
+                blocks = JSON.parse(blocks);
+            } catch {
+                blocks = [];
+            }
+        }
+        next.contentBlocks = (Array.isArray(blocks) ? blocks : [])
+            .map(normalizeBlock)
+            .filter(Boolean);
+
+        setForm(next);
+        setErr("");
+        setMsg(
+            `JSON imported: ${next.contentBlocks.length} content blocks added. Review the form and click Save.`
+        );
+        setImportText("");
+        setImportOpen(false);
+    }
+
+    function importFromFile(file) {
+        const reader = new FileReader();
+        reader.onload = () => applyImport(String(reader.result || ""));
+        reader.onerror = () => setImportErr("Could not read the file.");
+        reader.readAsText(file);
+    }
+
+    async function copyAsJson() {
+        const data = {};
+        IMPORT_FIELDS.forEach((key) => {
+            data[key] = form[key];
+        });
+        data.contentBlocks = form.contentBlocks;
+
+        try {
+            await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+            setMsg("Form copied as JSON.");
+        } catch {
+            setErr("Could not copy to clipboard.");
+        }
+    }
+
     async function upload(file, callback) {
         setBusy(true);
         setErr("");
@@ -196,7 +391,11 @@ export default function BlogsPage() {
         setMsg("");
 
         const title = String(form.title || "").trim();
-        const slug = String(form.slug || "").trim().toLowerCase();
+        const slug = String(form.slug || "")
+            .trim()
+            .toLowerCase()
+            .replace(/-{2,}/g, "-")
+            .replace(/^-+|-+$/g, "");
 
         if (!title) {
             setErr("Please enter a blog title.");
@@ -223,16 +422,58 @@ export default function BlogsPage() {
         setSaving(true);
 
         try {
+            // If we are not in edit mode but a blog with this slug already
+            // exists (e.g. saved earlier as draft), update that blog instead
+            // of creating a duplicate.
+            let targetId = id;
+
+            if (!targetId) {
+                const existing = rows.find(
+                    (r) => String(r.slug || "").toLowerCase() === slug
+                );
+                if (existing) {
+                    if (
+                        !window.confirm(
+                            "A blog with this slug already exists. Update it?"
+                        )
+                    ) {
+                        setSaving(false);
+                        return;
+                    }
+                    targetId = getId(existing);
+                }
+            }
+
+            const {
+                id: _id1,
+                _id: _id2,
+                createdAt,
+                updatedAt,
+                category,
+                readTime,
+                metaDate,
+                ...rest
+            } = form;
+
+            // Badge info (category, read time, date) pehle block mein save hota hai
+            const metaBlock = {
+                type: "meta",
+                category: String(category || "").trim(),
+                readTime: String(readTime || "").trim(),
+                date: metaDate || createdAt || new Date().toISOString(),
+            };
+            const allBlocks = [metaBlock, ...(form.contentBlocks || [])];
+
             const payload = {
-                ...form,
+                ...rest,
                 title,
                 slug,
-                content: JSON.stringify(form.contentBlocks || []),
-                contentBlocks: form.contentBlocks || [],
+                content: JSON.stringify(allBlocks),
+                contentBlocks: allBlocks,
             };
 
-            if (id) {
-                await api(`/api/blogs/${id}`, {
+            if (targetId) {
+                await api(`/api/blogs/${encodeURIComponent(targetId)}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),
                 });
@@ -266,7 +507,7 @@ export default function BlogsPage() {
         if (!window.confirm("Delete this blog permanently?")) return;
 
         try {
-            await api(`/api/blogs/${blogId}`, { method: "DELETE" });
+            await api(`/api/blogs/${encodeURIComponent(blogId)}`, { method: "DELETE" });
             if (id === blogId) clear();
             await load();
         } catch (error) {
@@ -279,9 +520,8 @@ export default function BlogsPage() {
             "slug",
             value
                 .toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "")
+                .replace(/[^a-z0-9-]+/g, "-")
+                .replace(/-{2,}/g, "-")
         );
     }
 
@@ -304,6 +544,15 @@ export default function BlogsPage() {
                     scrollbar-width: none;
                     -ms-overflow-style: none;
                 }
+                .hide-scrollbar {
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                }
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
             `}</style>
             <div className="blog-management-page mx-auto w-full max-w-[1440px] text-[#e8eef4]">
                 <div className="mb-6">
@@ -317,52 +566,54 @@ export default function BlogsPage() {
                 {err && <p className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{err}</p>}
 
                 <div className="grid items-start gap-5 xl:grid-cols-[minmax(260px,.75fr)_minmax(0,1.5fr)]">
-                    <section className="panel overflow-hidden">
-                        <div className="border-b border-slate-700 p-4 font-semibold text-[#eaf2f8]">
+                    <section className="panel flex flex-col overflow-hidden xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)]">
+                        <div className="shrink-0 border-b border-slate-700 p-4 font-semibold text-[#eaf2f8]">
                             All blogs ({rows.length})
                         </div>
 
-                        {rows.length === 0 ? (
-                            <p className="p-4 text-sm muted">
-                                No blogs added yet.
-                            </p>
-                        ) : (
-                            rows.map((blog) => (
-                                <div
-                                    key={blog.id}
-                                    className="flex justify-between gap-3 border-b border-slate-700 p-4 hover:bg-white/[.03]"
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => edit(blog)}
-                                        className="min-w-0 text-left"
+                        <div className="hide-scrollbar max-h-[60vh] flex-1 overflow-y-auto xl:max-h-none">
+                            {rows.length === 0 ? (
+                                <p className="p-4 text-sm muted">
+                                    No blogs added yet.
+                                </p>
+                            ) : (
+                                rows.map((blog) => (
+                                    <div
+                                        key={getId(blog)}
+                                        className="flex justify-between gap-3 border-b border-slate-700 p-4 hover:bg-white/[.03]"
                                     >
-                                        <div className="text-sm font-medium text-slate-100">
-                                            {blog.title}
-                                        </div>
-                                        <div className="mt-1 text-xs text-slate-500">
-                                            /{blog.slug}
-                                        </div>
-                                        <span
-                                            className={`mt-2 inline-block rounded-full px-2 py-1 text-[11px] ${blog.status === "PUBLISHED"
-                                                ? "border border-green-500/20 bg-green-500/10 text-green-300"
-                                                : "border border-slate-600 bg-slate-800 text-slate-300"
-                                                }`}
+                                        <button
+                                            type="button"
+                                            onClick={() => edit(blog)}
+                                            className="min-w-0 text-left"
                                         >
-                                            {blog.status}
-                                        </span>
-                                    </button>
+                                            <div className="text-sm font-medium text-slate-100">
+                                                {blog.title}
+                                            </div>
+                                            <div className="mt-1 text-xs text-slate-500">
+                                                /{blog.slug}
+                                            </div>
+                                            <span
+                                                className={`mt-2 inline-block rounded-full px-2 py-1 text-[11px] ${blog.status === "PUBLISHED"
+                                                    ? "border border-green-500/20 bg-green-500/10 text-green-300"
+                                                    : "border border-slate-600 bg-slate-800 text-slate-300"
+                                                    }`}
+                                            >
+                                                {blog.status}
+                                            </span>
+                                        </button>
 
-                                    <button
-                                        type="button"
-                                        onClick={() => deleteBlog(blog.id)}
-                                        className="btn-danger self-start text-xs"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            ))
-                        )}
+                                        <button
+                                            type="button"
+                                            onClick={() => deleteBlog(getId(blog))}
+                                            className="btn-danger self-start text-xs"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </section>
 
                     <form
@@ -382,6 +633,79 @@ export default function BlogsPage() {
                             </button>
                         </div>
 
+                        <div className="rounded-lg border border-slate-700 bg-white/[.03] p-4">
+                            <div className="flex flex-wrap items-center justify-between gap-3">
+                                <div>
+                                    <p className="text-sm font-semibold text-[#eaf2f8]">
+                                        Import blog from JSON
+                                    </p>
+                                    <p className="mt-1 text-xs muted">
+                                        Paste or upload a JSON object to fill the whole form at once. You can still edit everything manually.
+                                    </p>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setImportOpen((open) => !open);
+                                            setImportErr("");
+                                        }}
+                                        className="btn-secondary text-xs"
+                                    >
+                                        {importOpen ? "Close" : "Paste JSON"}
+                                    </button>
+                                    <label className="btn-secondary cursor-pointer text-xs">
+                                        Upload .json
+                                        <input
+                                            type="file"
+                                            accept="application/json,.json"
+                                            className="hidden"
+                                            onChange={(event) => {
+                                                const file = event.target.files?.[0];
+                                                if (file) importFromFile(file);
+                                                event.currentTarget.value = "";
+                                            }}
+                                        />
+                                    </label>
+                                    <button
+                                        type="button"
+                                        onClick={copyAsJson}
+                                        className="btn-secondary text-xs"
+                                    >
+                                        Copy form as JSON
+                                    </button>
+                                </div>
+                            </div>
+
+                            {importOpen && (
+                                <div className="mt-3 space-y-3">
+                                    <textarea
+                                        rows={10}
+                                        value={importText}
+                                        onChange={(event) =>
+                                            setImportText(event.target.value)
+                                        }
+                                        placeholder={'{ "title": "...", "slug": "...", "contentBlocks": [ ... ] }'}
+                                        className="w-full font-mono text-xs"
+                                    />
+                                    {importErr && (
+                                        <p className="text-xs text-red-300">{importErr}</p>
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() => applyImport(importText)}
+                                        disabled={!importText.trim()}
+                                        className="btn text-xs disabled:opacity-50"
+                                    >
+                                        Fill form from JSON
+                                    </button>
+                                </div>
+                            )}
+                            {!importOpen && importErr && (
+                                <p className="mt-3 text-xs text-red-300">{importErr}</p>
+                            )}
+                        </div>
+
                         <div className="grid gap-3 md:grid-cols-2">
                             <Field
                                 label="Blog title"
@@ -394,6 +718,19 @@ export default function BlogsPage() {
                                 value={form.slug}
                                 onChange={handleSlugChange}
                                 required
+                            />
+                        </div>
+
+                        <div className="grid gap-3 md:grid-cols-2">
+                            <Field
+                                label="Category (shown as badge on website)"
+                                value={form.category}
+                                onChange={(value) => update("category", value)}
+                            />
+                            <Field
+                                label="Read time (optional, e.g. 9 min read - auto if empty)"
+                                value={form.readTime}
+                                onChange={(value) => update("readTime", value)}
                             />
                         </div>
 
@@ -455,6 +792,9 @@ export default function BlogsPage() {
                                         ["image", "+ Image"],
                                         ["list", "+ Bullet list"],
                                         ["table", "+ Table"],
+                                        ["tldr", "+ TL;DR"],
+                                        ["faq", "+ FAQs"],
+                                        ["cta", "+ CTA"],
                                     ].map(([type, label]) => (
                                         <button
                                             key={type}
@@ -682,9 +1022,141 @@ export default function BlogsPage() {
                                                             ],
                                                         })
                                                     }
-                                                    className="text-xs text-[#052e26]"
+                                                    className="text-xs text-sky-400 hover:text-sky-300"
                                                 >
                                                     + Add list item
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {block.type === "tldr" && (
+                                            <textarea
+                                                rows={5}
+                                                value={block.text || ""}
+                                                onChange={(event) =>
+                                                    patchBlock(index, {
+                                                        text: event.target.value,
+                                                    })
+                                                }
+                                                placeholder="TL;DR points (one point per line)"
+                                                className="w-full"
+                                            />
+                                        )}
+
+                                        {block.type === "cta" && (
+                                            <div className="space-y-2">
+                                                <textarea
+                                                    rows={2}
+                                                    value={block.text || ""}
+                                                    onChange={(event) =>
+                                                        patchBlock(index, {
+                                                            text: event.target.value,
+                                                        })
+                                                    }
+                                                    placeholder="CTA text (e.g. Need help choosing the right tech stack?)"
+                                                    className="w-full"
+                                                />
+                                                <div className="grid gap-2 md:grid-cols-2">
+                                                    <input
+                                                        value={block.buttonLabel || ""}
+                                                        onChange={(event) =>
+                                                            patchBlock(index, {
+                                                                buttonLabel: event.target.value,
+                                                            })
+                                                        }
+                                                        placeholder="Button label"
+                                                        className="w-full"
+                                                    />
+                                                    <input
+                                                        value={block.buttonUrl || ""}
+                                                        onChange={(event) =>
+                                                            patchBlock(index, {
+                                                                buttonUrl: event.target.value,
+                                                            })
+                                                        }
+                                                        placeholder="Button URL (e.g. /contact)"
+                                                        className="w-full"
+                                                    />
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {block.type === "faq" && (
+                                            <div className="space-y-3">
+                                                <input
+                                                    value={block.title || ""}
+                                                    onChange={(event) =>
+                                                        patchBlock(index, {
+                                                            title: event.target.value,
+                                                        })
+                                                    }
+                                                    placeholder="FAQ section heading"
+                                                    className="w-full"
+                                                />
+                                                {(block.items || []).map((faq, faqIndex) => (
+                                                    <div
+                                                        key={faqIndex}
+                                                        className="space-y-2 rounded-lg border border-slate-700 p-3"
+                                                    >
+                                                        <input
+                                                            value={faq.question || ""}
+                                                            onChange={(event) =>
+                                                                patchBlock(index, {
+                                                                    items: block.items.map(
+                                                                        (entry, i) =>
+                                                                            i === faqIndex
+                                                                                ? { ...entry, question: event.target.value }
+                                                                                : entry
+                                                                    ),
+                                                                })
+                                                            }
+                                                            placeholder={`Question ${faqIndex + 1}`}
+                                                            className="w-full"
+                                                        />
+                                                        <textarea
+                                                            rows={3}
+                                                            value={faq.answer || ""}
+                                                            onChange={(event) =>
+                                                                patchBlock(index, {
+                                                                    items: block.items.map(
+                                                                        (entry, i) =>
+                                                                            i === faqIndex
+                                                                                ? { ...entry, answer: event.target.value }
+                                                                                : entry
+                                                                    ),
+                                                                })
+                                                            }
+                                                            placeholder="Answer"
+                                                            className="w-full"
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                patchBlock(index, {
+                                                                    items: block.items.filter(
+                                                                        (_, i) => i !== faqIndex
+                                                                    ),
+                                                                })
+                                                            }
+                                                            className="text-xs text-red-400 hover:text-red-300"
+                                                        >
+                                                            Remove question
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        patchBlock(index, {
+                                                            items: [
+                                                                ...(block.items || []),
+                                                                { question: "", answer: "" },
+                                                            ],
+                                                        })
+                                                    }
+                                                    className="text-xs text-sky-400 hover:text-sky-300"
+                                                >
+                                                    + Add question
                                                 </button>
                                             </div>
                                         )}
