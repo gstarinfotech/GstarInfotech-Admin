@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import multer from "multer";
 import pg from "pg";
+import nodemailer from "nodemailer";
 import { fileURLToPath } from "node:url";
 
 dotenv.config();
@@ -29,9 +30,22 @@ const pool = new Pool({
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
 });
-const allowedOrigins = (process.env.FRONTEND_ORIGIN || "http://localhost:3000,http://localhost:3001")
+const configuredOrigins = (process.env.FRONTEND_ORIGIN || "")
   .split(",").map((x) => x.trim()).filter(Boolean);
-app.use(cors({ origin(origin, cb) { if (!origin || allowedOrigins.includes(origin)) return cb(null, true); return cb(new Error("Origin not allowed by CORS")); } }));
+const allowedOrigins = new Set([
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:3001",
+  "http://127.0.0.1:3001",
+  ...configuredOrigins,
+]);
+app.use(cors({
+  origin(origin, cb) {
+    if (!origin || allowedOrigins.has(origin)) return cb(null, true);
+    console.warn(`[CORS] Blocked origin: ${origin}`);
+    return cb(null, false);
+  },
+}));
 app.use(express.json({ limit: "25mb" }));
 // Uploaded media is stored on disk; only its URL is saved in Neon.
 app.use("/uploads", express.static(UPLOAD_DIR, {
@@ -244,12 +258,82 @@ app.get("/api/leads", auth, asyncRoute(async (_req, res) => {
 }));
 app.post("/public/leads", asyncRoute(async (req, res) => {
   const b = req.body || {};
-  const name = String(b.name || "").trim(), email = String(b.email || "").trim();
-  if (!name || !email || !String(b.message || "").trim()) return res.status(422).json({ error: "Name, email and message are required" });
+  const name = String(b.name || "").trim();
+  const email = String(b.email || "").trim();
+  const subject = String(b.subject || "").trim();
+  const service = String(b.service || "").trim();
+  const message = String(b.message || "").trim();
+
+  if (!name || !email || !subject || !message) {
+    return res.status(422).json({ success: false, error: "Name, email, subject and message are required." });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(422).json({ success: false, error: "Please provide a valid email address." });
+  }
+
   const id = crypto.randomUUID();
-  const data = { ...b, id, name, email, status: "New", createdAt: new Date().toISOString(), admin_notes: "" };
+  const createdAt = new Date().toISOString();
+  const data = {
+    id, name, email, subject, service, message,
+    source: String(b.source || "Website Contact Form"),
+    status: "New",
+    createdAt,
+    submitted_at: createdAt,
+    admin_notes: "",
+  };
+
+  // Save first. Email is a notification only and must never block or undo the lead.
   await q("INSERT INTO leads(id,data) VALUES($1,$2::jsonb)", [id, JSON.stringify(data)]);
-  res.status(201).json({ success: true, message: "Your message has been submitted successfully.", id });
+
+  let emailSent = false;
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = Number(process.env.SMTP_PORT || 465);
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const recipient = process.env.LEAD_TO || "agrawalsneha600@gmail.com";
+
+  if (smtpHost && smtpUser && smtpPass && recipient) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: String(process.env.SMTP_SECURE || (smtpPort === 465)).toLowerCase() === "true",
+        auth: { user: smtpUser, pass: smtpPass },
+      });
+      const safe = (value) => String(value || "").replace(/[&<>\"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
+      }[char]));
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM || smtpUser,
+        to: recipient,
+        replyTo: email,
+        subject: `New Website Enquiry: ${subject}`,
+        text: [
+          "A new enquiry was submitted on the GStar Infotech website.",
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Subject: ${subject}`,
+          `Service: ${service || "Not selected"}`,
+          `Message: ${message}`,
+          `Lead ID: ${id}`,
+          `Received: ${createdAt}`,
+        ].join("\n"),
+        html: `<h2>New Website Enquiry</h2><p><b>Name:</b> ${safe(name)}</p><p><b>Email:</b> ${safe(email)}</p><p><b>Subject:</b> ${safe(subject)}</p><p><b>Service:</b> ${safe(service || "Not selected")}</p><p><b>Message:</b><br>${safe(message).replace(/\n/g, "<br>")}</p><p><b>Lead ID:</b> ${safe(id)}</p><p><b>Received:</b> ${safe(createdAt)}</p>`,
+      });
+      emailSent = true;
+    } catch (mailError) {
+      console.error("[LEADS] Lead saved, but notification email failed:", mailError);
+    }
+  } else {
+    console.warn("[LEADS] Lead saved. SMTP is not configured; email notification skipped.");
+  }
+
+  res.status(201).json({
+    success: true,
+    message: "Your message has been submitted successfully.",
+    id,
+    emailSent,
+  });
 }));
 app.patch("/api/leads/:id", auth, asyncRoute(async (req, res) => {
   const found = await q("SELECT data FROM leads WHERE id=$1", [req.params.id]);
