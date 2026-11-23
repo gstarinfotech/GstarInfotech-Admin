@@ -61,6 +61,7 @@ const IMPORT_FIELDS = [
     "robotsFollow",
     "category",
     "readTime",
+    "date",
 ];
 
 const str = (v) => (typeof v === "string" ? v : v == null ? "" : String(v));
@@ -109,9 +110,10 @@ function normalizeBlock(block) {
         case "cta":
             return {
                 type: "cta",
-                text: str(block.text),
-                buttonLabel: str(block.buttonLabel),
-                buttonUrl: str(block.buttonUrl),
+                text: str(block.text || block.title),
+                description: str(block.description),
+                buttonLabel: str(block.buttonLabel || block.button),
+                buttonUrl: str(block.buttonUrl || block.href || "/contact"),
             };
         default:
             return null;
@@ -152,14 +154,27 @@ export default function BlogsPage() {
                 ? blog.content
                 : [];
         const { meta, blocks } = splitMeta(rawBlocks);
+        const editableBlocks = [...blocks];
+
+        // Older/imported records may still keep CTA at the root level.
+        if (blog.cta && typeof blog.cta === "object" &&
+            !editableBlocks.some((block) => block?.type === "cta")) {
+            editableBlocks.push(normalizeBlock({
+                type: "cta",
+                text: blog.cta.title || blog.cta.text,
+                description: blog.cta.description,
+                buttonLabel: blog.cta.buttonLabel || blog.cta.button,
+                buttonUrl: blog.cta.buttonUrl || blog.cta.href || "/contact",
+            }));
+        }
 
         setForm({
             ...createBlankBlog(),
             ...blog,
             category: blog.category || meta.category || "",
             readTime: blog.readTime || meta.readTime || "",
-            metaDate: meta.date || "",
-            contentBlocks: blocks,
+            metaDate: String(meta.date || blog.date || blog.publishedAt || "").slice(0, 10),
+            contentBlocks: editableBlocks,
         });
         setMsg("");
         setErr("");
@@ -201,7 +216,7 @@ export default function BlogsPage() {
                 items: [{ question: "", answer: "" }],
             };
         } else if (type === "cta") {
-            block = { type: "cta", text: "", buttonLabel: "", buttonUrl: "" };
+            block = { type: "cta", text: "", description: "", buttonLabel: "Contact Us", buttonUrl: "/contact" };
         } else {
             block = { type: "list", items: [""] };
         }
@@ -337,6 +352,20 @@ export default function BlogsPage() {
             .map(normalizeBlock)
             .filter(Boolean);
 
+        // Support CTA supplied at the JSON root as well as inside contentBlocks.
+        if (data.cta && typeof data.cta === "object" &&
+            !next.contentBlocks.some((block) => block.type === "cta")) {
+            next.contentBlocks.push(normalizeBlock({
+                type: "cta",
+                text: data.cta.title || data.cta.text,
+                description: data.cta.description,
+                buttonLabel: data.cta.buttonLabel || data.cta.button || "Contact Us",
+                buttonUrl: data.cta.buttonUrl || data.cta.href || "/contact",
+            }));
+        }
+
+        next.metaDate = String(data.date || data.publishedAt || data.metaDate || "").slice(0, 10);
+
         setForm(next);
         setErr("");
         setMsg(
@@ -359,6 +388,7 @@ export default function BlogsPage() {
             data[key] = form[key];
         });
         data.contentBlocks = form.contentBlocks;
+        data.date = form.metaDate || "";
 
         try {
             await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
@@ -460,7 +490,7 @@ export default function BlogsPage() {
                 type: "meta",
                 category: String(category || "").trim(),
                 readTime: String(readTime || "").trim(),
-                date: metaDate || createdAt || new Date().toISOString(),
+                date: metaDate || "",
             };
             const allBlocks = [metaBlock, ...(form.contentBlocks || [])];
 
@@ -468,6 +498,7 @@ export default function BlogsPage() {
                 ...rest,
                 title,
                 slug,
+                date: metaDate || null,
                 content: JSON.stringify(allBlocks),
                 contentBlocks: allBlocks,
             };
@@ -732,6 +763,21 @@ export default function BlogsPage() {
                                 value={form.readTime}
                                 onChange={(value) => update("readTime", value)}
                             />
+                        </div>
+
+                        <div>
+                            <label className="mb-1.5 block text-xs text-slate-300">
+                                Blog publish date (shown on website)
+                            </label>
+                            <input
+                                type="date"
+                                value={form.metaDate || ""}
+                                onChange={(event) => update("metaDate", event.target.value)}
+                                className="w-full rounded-lg border border-slate-700 bg-[#111b27] p-2.5 text-sm text-white"
+                            />
+                            <p className="mt-1 text-[11px] text-slate-500">
+                                Select the date you want visitors to see. It will not be replaced with the upload date.
+                            </p>
                         </div>
 
                         <Area
@@ -1053,7 +1099,16 @@ export default function BlogsPage() {
                                                             text: event.target.value,
                                                         })
                                                     }
-                                                    placeholder="CTA text (e.g. Need help choosing the right tech stack?)"
+                                                    placeholder="CTA heading/title"
+                                                    className="w-full"
+                                                />
+                                                <textarea
+                                                    rows={3}
+                                                    value={block.description || ""}
+                                                    onChange={(event) =>
+                                                        patchBlock(index, { description: event.target.value })
+                                                    }
+                                                    placeholder="CTA description"
                                                     className="w-full"
                                                 />
                                                 <div className="grid gap-2 md:grid-cols-2">
